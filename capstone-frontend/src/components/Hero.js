@@ -1,17 +1,15 @@
-// src/components/Hero.js
-import React from "react";
-import "../styles/Hero.css";
+import React from 'react';
 
-function Hero() {
+const Hero = () => {
   return (
-    <section className="hero-section">
-      <div className="hero-content">
-        <h1>Grow Your Business with Our Digital Marketing Solutions</h1>
-        <p>We help you reach new customers and expand your online presence.</p>
-        <button className="cta-button">Request a Quote</button>
+    <section className="hero">
+      <div className="container">
+        <h1>Boost Your Business</h1>
+        <p>Digital marketing strategies that deliver results.</p>
+        <a href="#contact" className="btn btn-cta">Request a Quote</a>
       </div>
     </section>
   );
-}
+};
 
 export default Hero;

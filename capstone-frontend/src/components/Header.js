@@ -1,24 +1,41 @@
-// src/components/Header.js
-import React from "react";
-import { Link } from "react-router-dom"; 
-import "../styles/Header.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+import Switch from './Switch';
 
-function Header() {
+const Header = ({ darkMode, toggleDarkMode }) => {
   return (
-    <header className="site-header">
-      <div className="logo">
-        <h2>Marketing Agency</h2>
+    <header className="py-3" style={{ backgroundColor: "#000", color: "white" }}>
+      <div className="container d-flex justify-content-between align-items-center">
+        <h1 className="h3 mb-0">Digital Agency</h1>
+        <nav>
+          <ul className="nav">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About Us</Link>
+            </li>
+            <li className="nav-item">
+              <HashLink smooth className="nav-link" to="/#services">Services</HashLink>
+            </li>
+            <li className="nav-item">
+              <HashLink smooth className="nav-link" to="/#testimonials">Testimonials</HashLink>
+            </li>
+            <li className="nav-item">
+              <HashLink smooth className="nav-link" to="/#contact">Contact</HashLink>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">Login</Link>
+            </li>
+            <li className="nav-item">
+              <Switch checked={darkMode} onToggle={toggleDarkMode} />
+            </li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          {/* Se quiser rotear para a Landing page */}
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          {/* <li><Link to="/login">Login</Link></li> */}
-        </ul>
-      </nav>
     </header>
   );
-}
+};
 
 export default Header;

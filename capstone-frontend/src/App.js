@@ -1,24 +1,53 @@
-// src/App.js
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Testimonials from './components/Testimonials';
+import ContactForm from './components/ContactForm';
+import About from './components/About';
+import Login from './components/Login';
+import PageLayout from './components/PageLayout';
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login"; 
-import About from "./pages/About";
+function LandingPage({ darkMode, toggleDarkMode }) {
+  return (
+    <PageLayout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
+      <Hero />
+      <Services />
+      <Testimonials />
+      <ContactForm />
+    </PageLayout>
+  );
+}
 
 function App() {
+  // Start in light mode by default
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => setDarkMode(!darkMode);
+
   return (
     <Router>
-      <Header /> {/* Aparece em todas as páginas */}
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<Login />} />
-        {/* Outras rotas */}
-      </Routes>
-      <Footer /> {/* Aparece em todas as páginas */}
+      <div className={darkMode ? "dark-mode" : "light-mode"}>
+        <Routes>
+          <Route path="/" element={<LandingPage darkMode={darkMode} toggleDarkMode={toggleDarkMode} />} />
+          <Route 
+            path="/about" 
+            element={
+              <PageLayout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
+                <About />
+              </PageLayout>
+            } 
+          />
+          <Route 
+            path="/login" 
+            element={
+              <PageLayout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
+                <Login />
+              </PageLayout>
+            } 
+          />
+        </Routes>
+      </div>
     </Router>
   );
 }
